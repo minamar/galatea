@@ -1,0 +1,20 @@
+# To start the server, go where manage.py file is and open it at the terminal. Run the following:
+
+../galatea$ python manage.py runserver 0.0.0.0:8000
+
+# If there are no errors you should see the following:
+
+Performing system checks...
+
+System check identified no issues (0 silenced).
+November 04, 2017 - 20:09:26
+Django version 1.11, using settings 'galatea.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+# Now open chrome and to run the participants interface go to address:
+http://localhost:8000
+
+# To go to the database admin page:
+http://localhost:8000/admin/
+

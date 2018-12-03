@@ -1,0 +1,293 @@
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+	<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Affective Slider CRNS</title>
+
+<style>
+
+body {
+	margin: 0px;
+	padding: 50px;
+}
+
+.AffectiveSlider {
+	
+	width: 100%;
+	text-align: center;
+}
+
+.arousal_svg {
+	width: 7%;
+	margin: 0px;
+	margin-bottom: -30px;
+}
+
+.AffectiveSlider {
+	margin-top: 2em;
+}
+
+.AffectiveSlider .intensity_cue_svg {
+	width: 78%;
+	position: relative;
+	top: -25px;
+}
+
+@media (max-width: 1100px) {
+	.AffectiveSlider .intensity_cue_svg {
+		width: 76%;
+		position: relative;
+		top: 5px;
+	}
+}
+
+input[type=range]:focus {
+	outline: none;
+}
+
+.AffectiveSlider input[type=range]{
+	/* fix for FF unable to apply focus style bug  */
+	border: 10px solid white;
+
+	/*required for proper track sizing in FF*/
+	width: 80%;
+	margin: 0px;
+	padding: 0px;
+	vertical-align: top;
+	margin-top: 6px;
+}
+
+
+.AffectiveSlider input[type=range]::-moz-range-track {
+	width: 100%;
+	height: 20px;
+	background: #ddd;
+	border-radius: 10px;
+	border: none;
+}
+input[type=range]:focus::-moz-range-track {
+	background: #ccc;
+}
+
+.AffectiveSlider input[type=range]::-moz-range-thumb {
+	height: 35px;
+	width: 35px;
+	border-radius: 60%;
+	background: white;
+	border: 2px solid #505050;
+}
+
+.AffectiveSlider input[type=range]::-moz-range-thumb:hover {
+	background: #505050;
+	border: 2px solid white;
+	cursor: pointer;
+	box-shadow: 0px 0px 12px #212121;
+}
+
+
+.AffectiveSlider input[type=range]{
+	-webkit-appearance: none;
+}
+
+.statement {
+	font-weight: bold;
+	font-size: 28px;
+
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 20px;
+	border: none;
+	background: #ddd;
+	border-radius: 10px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 35px;
+	width: 35px;
+	border-radius: 60%;
+	background: white;
+	border: 2px solid #505050;
+	margin-top: -8px;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+	background: #505050;
+	border: 2px solid white;
+	cursor: pointer;
+	box-shadow: 0px 0px 12px #212121;
+}
+
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+	background: #ccc;
+}
+
+input[type=range]::-ms-track {
+	width: 100%;
+	height: 20px;
+	/*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+	background: transparent;
+	/*leave room for the larger thumb to overflow with a transparent border */
+	border-color: transparent;
+	border-width: 16px 0;
+	/*remove default tick marks*/
+	color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+	background: #ddd;
+	border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+	background: #ddd;
+	border-radius: 10px;
+}
+input[type=range]::-ms-thumb {
+	height: 35px;
+	width: 35px;
+	border-radius: 60%;
+	background: white;
+	border: 2px solid #505050;
+}
+.AffectiveSlider input[type=range]::-ms-thumb:hover {
+	background: #505050;
+	border: 2px solid white;
+	cursor: pointer;
+	box-shadow: 0px 0px 12px #212121;
+}
+input[type=range]:focus::-ms-fill-lower {
+	background: #ccc;
+}
+input[type=range]:focus::-ms-fill-upper {
+	background: #ccc;
+}
+
+div {
+	margin-bottom: 2em;
+}
+
+input[type=submit] {
+    padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius:5px;
+    border-radius: 5px; 
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 150%;
+    border-style: solid;
+    font-color:#3A3738;
+}
+
+.submit {
+    border-style: solid;
+    border-color:#3A3738;
+}
+
+.submit:hover {
+	background: -moz-linear-gradient(bottom,#ccc,#E1E0E0);
+}
+
+.play {
+    position: fixed;
+    left: 50px;
+    bottom: 150px;
+    width: 7%;
+	margin: 0px;
+	margin-bottom: -30px;
+	outline:none;
+}
+
+</style>
+</head>
+<body>
+{% load static %}
+	<form class="AffectiveSlider" action="" method="post">
+
+		<div id='AffectiveSlider'>
+		
+		{% csrf_token %}
+    	{% load static %}
+
+
+		{% for field in form.visible_fields %}
+			<label class="statement" >{{ field.label }}</label>
+			</br></br>
+  			<div >
+
+    			<!--<label for="{{ field.id_for_label }}">{{ field.label }}</label>-->
+    			<!--{{ field | add_class:'form-control'}} {% url 'evalemo:evaluation' %}-->
+    			
+    			<div >
+    				{% if field.name == "arousal" %}
+						<object class="arousal_svg" type="image/svg+xml" data="{% static "images/ASsleepy.svg" %}"></object>
+						{% render_field form.arousal type="range" value=".5" min="0" max="1" step=".01" %}
+    					<object class="arousal_svg" type="image/svg+xml" data="{% static "images/ASwideawake.svg" %}"></object>
+    				{% else %}
+    					<object class="arousal_svg" type="image/svg+xml" data="{% static "images/ASunhappy.svg" %}"></object>
+						{% render_field form.pleasure type="range" value=".5" min="0" max="1" step=".01" %}
+    					<object class="arousal_svg" type="image/svg+xml" data="{% static "images/AShappy.svg" %}"></object>
+    				{% endif %}
+
+					<object class="intensity_cue_svg" type="image/svg+xml" data="{% static "images/ASintensitycue.svg" %}"></object>
+				</div>
+
+
+
+ 			</div>
+		{% endfor %}
+		
+		</div>
+
+
+			<input id="submit_button" class="submit" type='submit' value='Submit'/>
+
+		
+	</form>
+	<input id="play_button" class="play" type="image" src="{% static "images/buttonPlay.png" %}" name="replay"/>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+	<script src="{% static "js/robotutils.js" %}"> </script>
+
+	<script>
+		 var flag = '{{flag}}';
+		 // if (flag==1) {
+  	// 		$("#submit_button").hide();
+  	// 		}
+
+		var state = '{{state}}'; //passed with the evaluation form 
+		$(document).ready(function(){
+		    $("#play_button").click(function(){
+		    	$("#play_button").hide();
+		    	$("#submit_button").hide();
+		        
+		        $.ajax({
+		        	url: (state == 1) ? "/ajaxplay" : "/ajaxplayTR",
+				   
+
+				   success: function(response) {
+				     	$("#play_button").show();
+		    			$("#submit_button").show();// here you do whatever you want with the response variable
+				   }
+				});
+
+		    });
+		}); 
+	</script>
+
+
+
+
+
+
+</body>
+
+</html>

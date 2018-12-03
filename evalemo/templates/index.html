@@ -1,0 +1,60 @@
+<!-- evalemo/templates/index.html -->
+<!DOCTYPE html>
+<html>
+<style>
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -webkit-justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 450px;
+    height: 260px;
+    background-color: lightgrey;
+    font-weight: bold;
+    margin: auto;
+}
+
+.welcome {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -webkit-justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 600px;
+    height: 200px;
+    margin: auto;
+}
+
+.welcome-sub {
+    position: absolute;
+    left: 47%;
+    bottom: 40%;
+    width: 10;
+    text-align: center;
+    font-size: 18px;
+
+}
+
+</style>
+    <head>
+        <meta charset="utf-8">
+        <title>GALATEA@CRNS</title>
+    </head>
+    <body>
+        <h1 class="welcome">Participant's Information</h1>
+        <form action="{% url 'evalemo:get_participant' %}" method="post">
+            
+            <div class="flex-container" id="ParticipantForm">
+            {% csrf_token %}
+            {{ form.as_p }}
+            </div>
+            <input class="welcome-sub" type="submit" value="Submit">
+        </form>
+
+        
+        
+    </body>
+</html>

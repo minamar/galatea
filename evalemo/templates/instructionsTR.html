@@ -1,0 +1,61 @@
+<!-- evalemo/templates/about.html -->
+<!DOCTYPE html>
+
+<style>
+.flex-container {
+    padding: 200px;
+    height: 300px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-flex-direction: column;
+    font-size: 24px;
+
+}
+
+.start {
+    position: auto;
+    left: 47%;
+    bottom: 60%;
+    width: 10;
+    text-align: center;
+    font-size: 24px;
+    align-items: center;
+}
+
+.instructions-head, .instructions-body {
+
+    -webkit-justify-content: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+
+
+</style>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>GALATEA@CRNS</title>
+    </head>
+    <body>
+    <div class="flex-container">
+    </br></br></br></br>
+    <div class="instructions-head"><h1>Training session instructions</h1></div>
+    </br>
+    <p>Thank you for filling in the questionnaire. Now you can start a short training session.</p>
+    <p>Use the play button (bottom left of the next screen) for the robot to execute an expression.</p>
+    <p>You can replay the expression once, if you need to see it again.</p>
+    <p>***</p>
+    <p>After you have watched the expression, you can use the sliding bars to give your ratings: </p>
+    <p><i>Pleasure</i> (how negative or positive was the robot's expression) and <i>Arousal</i> (how tired or excited was the robot's expression).</p>
+    <p>Submit when you are ready and then select the difficulty level in the scale that will appear.</p>
+    </br></br>
+    <a class="start" href="/evaluationTR/">Let's start</a>
+    </div>
+    </body>
+</html>

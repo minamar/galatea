@@ -1,0 +1,42 @@
+<!-- evalemo/templates/about.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>GALATEA@CRNS</title>
+    <style>
+
+html,body {padding:0;margin:0;}
+.wrap {
+    margin: auto;
+    width: 50%;
+    padding: 200px;
+    font:22px Arial, san-serif;
+    text-align:center;
+}
+
+.title {
+    font-size: 48px
+}
+
+.bye {font-weight: bold, font-size: 30px;}
+
+</style>
+    </head>
+    <body>
+    {% load static %}
+    <div class="wrap">
+        <h1 class="title">End of the experiment</h1>
+        </br>
+        </br>
+    <p>
+	Thank you for taking part in this experiment at the Centre for Robotics and Neural Systems!
+    </p>
+    </br>
+    
+    <h2 class="bye"> Have a great day!</h2>
+    <img  type="image" src="{% static "images/menurobot.png" %}">
+    </br></br>
+    </div>
+    </body>
+</html>
