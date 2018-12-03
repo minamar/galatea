@@ -58,6 +58,10 @@ coverage.xml
 local_settings.py
 db.sqlite3
 
+# Specific files #
+##################
+galatea/settings.py
+
 # Flask stuff:
 instance/
 .webassets-cache
