@@ -12,8 +12,8 @@
    viewBox="0 0 77.952756 77.952756"
    id="svg5181"
    version="1.1"
-   inkscape:version="0.91 r13725"
-   sodipodi:docname="AS_wideawake.svg">
+   inkscape:version="0.92.4 (33fec40, 2019-01-16)"
+   sodipodi:docname="ASwideawake.svg">
   <defs
      id="defs5183" />
   <sodipodi:namedview
@@ -27,12 +27,12 @@
      inkscape:cx="114.03677"
      inkscape:cy="92.942125"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g5138"
      showgrid="false"
      inkscape:window-width="1366"
      inkscape:window-height="768"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="24"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata5186">
@@ -42,7 +42,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -89,15 +89,6 @@
            id="path152"
            style="fill:#505050;fill-opacity:1;fill-rule:nonzero;stroke:none"
            d="m 0,0 c 2.182,0 3.951,-1.768 3.951,-3.949 0,-2.182 -1.769,-3.95 -3.951,-3.95 -2.181,0 -3.949,1.768 -3.949,3.95 C -3.949,-1.768 -2.181,0 0,0" />
-      </g>
-      <g
-         transform="translate(785.9678,239.7197)"
-         id="g154">
-        <path
-           inkscape:connector-curvature="0"
-           id="path156"
-           style="fill:#505050;fill-opacity:1;fill-rule:nonzero;stroke:#505050;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-           d="M 0,0 24.271,0" />
       </g>
       <g
          transform="translate(811.2383,273.0342)"

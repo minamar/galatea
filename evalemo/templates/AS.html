@@ -1,5 +1,5 @@
 {% load widget_tweaks %}
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 	<head>
 
@@ -216,7 +216,8 @@ input[type=submit] {
 		{% csrf_token %}
     	{% load static %}
 
-
+		{{ form.errors }}
+		{{ form.non_field_errors }}
 		{% for field in form.visible_fields %}
 			<label class="statement" >{{ field.label }}</label>
 			</br></br>
@@ -230,13 +231,17 @@ input[type=submit] {
 						<object class="arousal_svg" type="image/svg+xml" data="{% static "images/ASsleepy.svg" %}"></object>
 						{% render_field form.arousal type="range" value=".5" min="0" max="1" step=".01" %}
     					<object class="arousal_svg" type="image/svg+xml" data="{% static "images/ASwideawake.svg" %}"></object>
-    				{% else %}
+    				{% elif field.name == "pleasure"%}
     					<object class="arousal_svg" type="image/svg+xml" data="{% static "images/ASunhappy.svg" %}"></object>
 						{% render_field form.pleasure type="range" value=".5" min="0" max="1" step=".01" %}
     					<object class="arousal_svg" type="image/svg+xml" data="{% static "images/AShappy.svg" %}"></object>
-    				{% endif %}
+					{% else %}
+    					<object class="arousal_svg" type="image/svg+xml" data="{% static "images/ASdom_low.svg" %}"></object>
+						{% render_field form.dominance type="range" value=".5" min="0" max="1" step=".01" %}
+						<object class="arousal_svg" type="image/svg+xml" data="{% static "images/ASdom_high.svg" %}"></object>
+					{% endif %}
 
-					<object class="intensity_cue_svg" type="image/svg+xml" data="{% static "images/ASintensitycue.svg" %}"></object>
+<!--					<object class="intensity_cue_svg" type="image/svg+xml" data="{% static "images/ASintensitycue.svg" %}"></object>-->
 				</div>
 
 
@@ -251,11 +256,11 @@ input[type=submit] {
 
 		
 	</form>
-	<input id="play_button" class="play" type="image" src="{% static "images/buttonPlay.png" %}" name="replay"/>
-	
+	<input id="play_button" class="play" type="image" src="{% static 'images/buttonPlay.png' %}" name="replay"/>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
-	<script src="{% static "js/robotutils.js" %}"> </script>
+	<script src="{% static 'js/robotutils.js' %}"> </script>
 
 	<script>
 		 var flag = '{{flag}}';

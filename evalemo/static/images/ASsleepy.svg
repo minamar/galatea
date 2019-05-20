@@ -12,8 +12,8 @@
    viewBox="0 0 77.952755 77.952756"
    id="svg4482"
    version="1.1"
-   inkscape:version="0.91 r13725"
-   sodipodi:docname="AS_sleepy.svg">
+   inkscape:version="0.92.4 (33fec40, 2019-01-16)"
+   sodipodi:docname="ASsleepy.svg">
   <defs
      id="defs4484">
     <clipPath
@@ -36,12 +36,12 @@
      inkscape:cx="64.802868"
      inkscape:cy="77.577329"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g212"
      showgrid="false"
      inkscape:window-width="1366"
      inkscape:window-height="768"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="24"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata4487">
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -109,24 +109,6 @@
              d="m 0,0 c -3.889,6.34 -9.369,4.979 -9.602,4.916 l -0.524,1.93 c 0.071,0.019 7.138,1.853 11.831,-5.799 L 0,0 Z"
              style="fill:#505050;fill-opacity:1;fill-rule:nonzero;stroke:none"
              id="path236"
-             inkscape:connector-curvature="0" />
-        </g>
-        <g
-           id="g238"
-           transform="translate(68.5415,237.8423)">
-          <path
-             d="m 0,0 c 3.582,0 6.485,-0.896 6.485,-2 0,-1.104 -2.903,-2 -6.485,-2 -3.581,0 -6.484,0.896 -6.484,2 0,1.104 2.903,2 6.484,2"
-             style="fill:#505050;fill-opacity:1;fill-rule:nonzero;stroke:none"
-             id="path240"
-             inkscape:connector-curvature="0" />
-        </g>
-        <g
-           id="g242"
-           transform="translate(68.5415,237.8423)">
-          <path
-             d="m 0,0 c 3.582,0 6.485,-0.896 6.485,-2 0,-1.104 -2.903,-2 -6.485,-2 -3.581,0 -6.484,0.896 -6.484,2 0,1.104 2.903,2 6.484,2 z"
-             style="fill:none;stroke:#505050;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-             id="path244"
              inkscape:connector-curvature="0" />
         </g>
       </g>
