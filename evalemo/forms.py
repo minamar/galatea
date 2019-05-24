@@ -5,7 +5,8 @@ class ParticipantForm(forms.Form):
     subject = forms.IntegerField(label='Participant\'s number')
     sex = forms.ChoiceField(label='Sex', choices=(('F', 'F'), ('M', 'M'), ('O', 'O')))
     age = forms.IntegerField(label='Age')
-    anim_experience = forms.IntegerField(label='Animation experience', min_value=1, max_value=5)
+    anim_experience = forms.IntegerField(label='Animation experience', min_value=0, max_value=10)
+
 
 class SliderForm(forms.Form):
     pleasure = forms.FloatField(label='Displeasure-Pleasure', widget=forms.NumberInput(
@@ -54,7 +55,7 @@ class SurveyForm(forms.Form):
     anth_1 = forms.ChoiceField(label="Fake", initial='1', widget=forms.RadioSelect, choices=(
         ('1', 'Fake'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Natural')))
     anth_2 = forms.ChoiceField(label=" ", initial='1', widget=forms.RadioSelect, choices=(
-        ('1', 'Machine like'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Humanlike')))
+        ('1', 'Machinelike'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Humanlike')))
     anth_3 = forms.ChoiceField(label=" ", initial='1', widget=forms.RadioSelect, choices=(
         ('1', 'Unconscious'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Conscious')))
     anth_4 = forms.ChoiceField(label=" ", initial='1', widget=forms.RadioSelect, choices=(
