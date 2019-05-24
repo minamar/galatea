@@ -56,11 +56,11 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
-
+db.sqlite3
 
 # Specific files #
 ##################
-
+galatea/settings.py
 
 # Flask stuff:
 instance/
