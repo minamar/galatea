@@ -26,9 +26,9 @@ def main(motion_ses, leds_ses, idAnim):
 
     # TODO: uncomment after you drop everything excepts joints and leds
     # Add StandInit frame at the end of the animation
-    # last_idx = len(df)
-    # df.loc[last_idx, joints_names] = standInit
-    # df.loc[last_idx, leds_keys] = 1
+    last_idx = len(df)
+    df.loc[last_idx, joints_names] = standInit
+    df.loc[last_idx, leds_keys] = 1
 
     df['KneePitch'] = -1.49414
     motion_ses.setStiffnesses("WholeBody", 1)
