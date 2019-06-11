@@ -88,16 +88,23 @@ position: fixed
   font-family: Tahoma;
 }
 
+.play {
+    position: fixed;
+    left: 50px;
+    bottom: 150px;
+    width: 7%;
+	margin: 0px;
+	margin-bottom: -30px;
+	outline:none;
+}
 
 form .buttons .clear {background-color: #e9e9e9;}
 form .buttons .submit {background-color: #67ab49;} 
 form .buttons .clear:hover {background-color: #ccc;}
 form .buttons .submit:hover {background-color: #14892c;} 
 
-
-
-
     </style>
+
 </head>
 
 <body>
@@ -107,15 +114,15 @@ form .buttons .submit:hover {background-color: #14892c;}
 
     <form action="" method="post">
         {% csrf_token %}
-        </br>
-        </br>
+        <!--        </br>-->
+        <!--        </br>-->
 
 
         {% for field in form.visible_fields %}
 
 
         {% if field.name == "likert_was_emotion" %}
-<!--         <h1 class="likert-header">The robot's expression was emotional.</h1>-->
+        <!--         <h1 class="likert-header">The robot's expression was emotional.</h1>-->
         <label class="statement">{{field.label}}</label>
         </br>
         </br>
@@ -128,7 +135,7 @@ form .buttons .submit:hover {background-color: #14892c;}
         </ul>
 
         {% elif field.name == "attention" %}
-<!--         <h1 class="likert-header">The robot's expression was emotional.</h1>-->
+        <!--         <h1 class="likert-header">The robot's expression was emotional.</h1>-->
         <label class="statement">{{field.label}}</label>
         </br>
         </br>
@@ -143,18 +150,18 @@ form .buttons .submit:hover {background-color: #14892c;}
         {% else %}
 
         </br>
-         <h1 class="likert-header">If you think it was emotional, what was the emotion(s) expressed?</h1>
+        <h1 class="likert-header">If you think it was emotional, what was the emotion(s) expressed?</h1>
         <p class="likert-header"><i>(You can use your own words, or chose from the printed list)</i></p>
         </br>
         </br>
         <ul class='text'>
-                    {{ field.errors }}
-        {{ field.label_tag }} {{ field }}
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
 
         </ul>
         {% endif %}
         {% endfor %}
-</br></br>
+        </br></br>
         <div class="buttons">
             <button class="submit">Submit</button>
         </div>
@@ -162,5 +169,39 @@ form .buttons .submit:hover {background-color: #14892c;}
     </form>
 
 </div>
+
+
+<input id="play_button" class="play" type="image" src="{% static 'images/buttonPlay.png' %}" name="replay"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<script src="{% static 'js/robotutils.js' %}"></script>
+
+<script>
+		 var flag = '{{flag}}';
+		 // if (flag==1) {
+  	// 		$("#submit_button").hide();
+  	// 		}
+
+		var state = '{{state}}'; //passed with the evaluation form
+		$(document).ready(function(){
+		    $("#play_button").click(function(){
+		    	$("#play_button").hide();
+		    	$("#submit_button").hide();
+
+		        $.ajax({
+		        	url: (state == 1) ? "/ajaxplay" : "/ajaxplayTR",
+
+
+				   success: function(response) {
+				     	$("#play_button").show();
+		    			$("#submit_button").show();
+				   }
+				});
+
+		    });
+		});
+
+</script>
 </body>
 
