@@ -64,7 +64,7 @@ class SurveyForm(ModelForm):
 
 @python_2_unicode_compatible
 class Demographic(models.Model):
-    subject = models.IntegerField()
+    subject = models.IntegerField(unique=True)
     age = models.IntegerField()
     sex = models.CharField(max_length=1)
     anim_experience = models.IntegerField()
