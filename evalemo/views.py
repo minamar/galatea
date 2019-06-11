@@ -9,6 +9,9 @@ from django.http import HttpResponseRedirect
 from scripts import play_df_cond_gaussian_sampling
 from scripts.animDict import trials_order_tr
 from scripts.anim_utils import *
+from django.db import IntegrityError
+from dal import autocomplete
+
 
 naoqi_session = None
 motion_ses = None
@@ -92,9 +95,9 @@ def ajaxplay_comp(request):
     return HttpResponse()
 
 
-
-
 ########## TASK 2 VIEW - EVALUATION ##################
+
+
 
 def evaluation(request):
     # if this is a POST request we need to process the form data
@@ -193,6 +196,7 @@ def ajaxplay(request):
 
     return HttpResponse()
 
+
 ################ PARTICIPANT VIEW ################################
 def get_participant(request):
     global naoqi_session
@@ -202,20 +206,26 @@ def get_participant(request):
     if request.method == 'POST':
         form = ParticipantForm(request.POST)
         if form.is_valid():
-            subject = form.cleaned_data['subject']
-            age = form.cleaned_data['age']
-            sex = form.cleaned_data['sex']
-            anim_experience = form.cleaned_data['anim_experience']
-            request.session['subject'] = subject
-            request.session['age'] = age
-            request.session['sex'] = sex
-            request.session['trials_list'] = np.random.permutation(range(1, nItems + 1)).tolist()
-            request.session['comp_trials_list'] = np.random.permutation([28, 29, 30, 31]).tolist()
-            # Save demographic data in the database
-            demographic_obj = Demographic(subject=subject, age=age, sex=sex, anim_experience=anim_experience)
-            # saving all the data in the current object into the database
-            demographic_obj.save()
-            return HttpResponseRedirect('/play_comp/')
+            try:
+                subject = form.cleaned_data['subject']
+                age = form.cleaned_data['age']
+                sex = form.cleaned_data['sex']
+                anim_experience = form.cleaned_data['anim_experience']
+                request.session['subject'] = subject
+                request.session['age'] = age
+                request.session['sex'] = sex
+                request.session['trials_list'] = np.random.permutation(range(1, nItems + 1)).tolist()
+                request.session['comp_trials_list'] = np.random.permutation([28, 29, 30, 31]).tolist()
+                # Save demographic data in the database
+                demographic_obj = Demographic(subject=subject, age=age, sex=sex, anim_experience=anim_experience)
+                # saving all the data in the current object into the database
+                demographic_obj.save()
+                return HttpResponseRedirect('/play_comp/')
+            except IntegrityError as e:
+                # if 'unique constraint' in e.message:
+                print("Participant's number has already been used before.")
+
+
     # if a GET (or any other method) we'll create a blank form
     else:
         form = ParticipantForm()
@@ -257,6 +267,17 @@ class InstructionsTRPageView(TemplateView):
 
 class GoodbyePageView(TemplateView):
     template_name = "goodbye.html"
+
+
+class EmotionAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+
+        qs = Judge.objects.all()
+
+        if self.q:
+            qs = qs.filter(name__istartswith=self.q)
+
+        return qs
 
 
 #### TRAINING SESSION VIEWS ###########

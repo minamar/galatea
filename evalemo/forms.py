@@ -1,5 +1,5 @@
 from django import forms
-
+from dal import autocomplete
 
 class ParticipantForm(forms.Form):
     subject = forms.IntegerField(label='Participant\'s number')
@@ -27,11 +27,17 @@ class WasEmotionForm(forms.Form):
     likert_was_emotion = forms.ChoiceField(label="The robot's expression was emotional.", initial='1', widget=forms.RadioSelect, choices=(
         ('1', 'Strongly disagree'), ('2', 'Disagree'), ('3', 'Neither agree nor disagree'), ('4', 'Agree'),
         ('5', 'Strongly agree')))
-    cat_emotion = forms.CharField(
-        label="",
-        required=False,
-        max_length=200,
-        widget=forms.TextInput(attrs={'size': '80', 'autocomplete': 'off', 'required': False}))
+    # cat_emotion = forms.CharField(
+    #     label="",
+    #     required=False,
+    #     max_length=200,
+    #     widget=forms.TextInput(attrs={'size': '80', 'autocomplete': 'off', 'required': False}))
+
+    # cat_emotion = forms.CharField(
+    #     label="",
+    #     required=False,
+    #     max_length=200,
+    #     widget=forms.TextInput(attrs={'size': '80', 'autocomplete': 'off', 'required': False}))
 
 
 # class SurveyForm(forms.Form):
