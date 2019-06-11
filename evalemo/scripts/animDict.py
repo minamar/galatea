@@ -15,7 +15,7 @@ gen_anim_list = {
     14: "LD2_216_dec_long0_r5_Neg.csv",
     15: "LD2_225_dec_long3_r5_Neg.csv",
     16: "LD2_232_dec_long5_r5_Neu.csv",
-    17: "LD3_73_dec_long0_r2_Neu.csv ",
+    17: "LD3_73_dec_long0_r2_Neu.csv",
     18: "LD3_78_dec_long2_r2_Neg.csv",
     19: "LD3_80_dec_long2_r2_Pos.csv",
     20: "LD3_127_dec_long2_r3_Neu.csv",

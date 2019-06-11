@@ -5,11 +5,11 @@ import pandas as pd
 from anim_settings import *
 
 
-def naoqi_connect(strIP='10.0.206.62', nPort=9559):
+def naoqi_connect(str_ip='127.0.0.1', n_port=41807):
 
     naoqi_session = qi.Session()
     try:
-        naoqi_session.connect("tcp://" + strIP + ":" + str(nPort))
+        naoqi_session.connect("tcp://" + str_ip + ":" + str(n_port))
         return naoqi_session
     except RuntimeError:
         print("Can't connect to Naoqi")
@@ -17,7 +17,7 @@ def naoqi_connect(strIP='10.0.206.62', nPort=9559):
 
 
 def go_2_init(posture_ses):
-    posture_ses.goToPosture("StandInit", 0.15)
+    posture_ses.goToPosture("StandInit", 0.05)
 
 
 def load_modules(session):

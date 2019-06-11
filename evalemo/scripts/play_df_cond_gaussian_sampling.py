@@ -1,5 +1,6 @@
 from anim_utils import *
 from animDict import gen_anim_list
+import pandas as pd
 
 """
 Load a df of postures and display on the simulator without interpolation.
@@ -24,7 +25,7 @@ def main(motion_ses, leds_ses, idAnim):
         print("Valence: " + str(valence))
     print("Anim: " + nameAnim)
 
-    # TODO: uncomment after you drop everything excepts joints and leds
+    # TODO: uncomment after you drop everything except joints and leds
     # Add StandInit frame at the end of the animation
     last_idx = len(df)
     df.loc[last_idx, joints_names] = standInit
@@ -47,7 +48,10 @@ def main(motion_ses, leds_ses, idAnim):
         # Motion
         motion_ses.setAngles(joints_names, angle_list, 0.05)
 
-    print('Duration: ' + str(time.time() - start))
+    # print('Duration: ' + str(time.time() - start))
+    # go_2_init()
+    # leds_ses.reset()
 
+    time.sleep(1)
     return nameAnim
 
