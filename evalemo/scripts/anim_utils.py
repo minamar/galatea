@@ -6,6 +6,7 @@ from anim_settings import *
 
 
 def naoqi_connect(str_ip='127.0.0.1', n_port=41807):
+    # TODO:Change ip and port for real robot
 
     naoqi_session = qi.Session()
     try:

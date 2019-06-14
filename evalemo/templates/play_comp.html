@@ -168,10 +168,9 @@ form .buttons .submit:hover {background-color: #14892c;}
 <div class="instructions-head"><h1>Task 1</h1></div>
 </br>
 <div class="instr-comp">
-    <p>Click the play button and watch the robot's animation.</p>
-    <p>You can replay the animation if you need to. </p>
+    <p>Click the play button to watch the robot's animation.</p>
     </br>
-    <p>After watching the animation, please respond to the following scales, and then submit. </p>
+    <p>After watching the animation, please rate your impression of the robot on following scales: </p>
 </div>
 <input id="play_button" class="play" type="image" src="{% static 'images/buttonPlay.png' %}" name="replay"/>
 
@@ -218,10 +217,17 @@ form .buttons .submit:hover {background-color: #14892c;}
     <form action="" method="post">
         {% csrf_token %}
 
-        <p style="font-size:20px;">Please rate your impression of the robot on following scales:</p>
+<!--        <p style="font-size:20px;">Please rate your impression of the robot on following scales:</p>-->
 </br>
         {% for field in form.visible_fields %}
-        <!--<label class= "statement">{{field.label}}</label>-->
+
+        {% if field.label == 'anthropomorphism'%}
+        <p style="font-size:22px;font-weight:bold;text-align:center">Anthropomorphism</p>
+           {% endif %}
+        {% if field.label == 'animacy'%}
+        <p style="font-size:22px;font-weight:bold;text-align:center">Animacy</p>
+           {% endif %}
+
         <table>
             <tr>
                 <th>1</th>
