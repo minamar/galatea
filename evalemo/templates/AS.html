@@ -116,6 +116,10 @@ input[type=range]::-webkit-slider-thumb {
 	margin-top: -8px;
 }
 
+.not-clicked::-webkit-slider-thumb{
+  display:none;
+}
+
 input[type=range]::-webkit-slider-thumb:hover {
 	background: #505050;
 	border: 2px solid white;
@@ -229,15 +233,15 @@ input[type=submit] {
     			<div >
     				{% if field.name == "arousal" %}
 						<object class="arousal_svg" type="image/svg+xml" data="{% static "images/ASsleepy.svg" %}"></object>
-						{% render_field form.arousal type="range" value=".5" min="0" max="1" step=".01" %}
+						{% render_field form.arousal type="range" class='not-clicked' min="0" max="1" step=".01" %}
     					<object class="arousal_svg" type="image/svg+xml" data="{% static "images/ASwideawake.svg" %}"></object>
     				{% elif field.name == "pleasure"%}
     					<object class="arousal_svg" type="image/svg+xml" data="{% static "images/ASunhappy.svg" %}"></object>
-						{% render_field form.pleasure type="range" value=".5" min="0" max="1" step=".01" %}
+						{% render_field form.pleasure type="range" class='not-clicked' min="0" max="1" step=".01" %}
     					<object class="arousal_svg" type="image/svg+xml" data="{% static "images/AShappy.svg" %}"></object>
 					{% else %}
     					<object class="arousal_svg" type="image/svg+xml" data="{% static "images/ASdom_low.svg" %}"></object>
-						{% render_field form.dominance type="range" value=".5" min="0" max="1" step=".01" %}
+						{% render_field form.dominance type="range" class='not-clicked' min="0" max="1" step=".01" %}
 						<object class="arousal_svg" type="image/svg+xml" data="{% static "images/ASdom_high.svg" %}"></object>
 					{% endif %}
 
@@ -263,6 +267,13 @@ input[type=submit] {
 	<script src="{% static 'js/robotutils.js' %}"> </script>
 
 	<script>
+
+	$('.not-clicked').click(function(e){
+  $(this).removeClass('not-clicked');
+  $(this).addClass('clicked');
+});
+
+
 		 var flag = '{{flag}}';
 		 // if (flag==1) {
   	// 		$("#submit_button").hide();
