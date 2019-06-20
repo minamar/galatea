@@ -46,7 +46,7 @@ def main(motion_ses, leds_ses, idAnim):
         # Motion
         motion_ses.setAngles(joints_names, angle_list, 0.05)
         # TODO: Remove for real robot
-        time.sleep(0.04)
+        time.sleep(0.01)
 
     time.sleep(1)
     return nameAnim
