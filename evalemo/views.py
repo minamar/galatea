@@ -10,20 +10,21 @@ from scripts import play_df_cond_gaussian_sampling
 from scripts.animDict import trials_order_tr
 from scripts.anim_utils import *
 from django.db import IntegrityError
-from dal import autocomplete
 
 
 naoqi_session = None
 motion_ses = None
 posture_ses = None
 leds_ses = None
-nItems = 24
-nItems_tr = 3
-n_comparisons = 4
+nItems = 18  # Main exp evaluation trials
+nItems_tr = 3   # Training trials
+n_comparisons = 2   # Godspeed trials
+
 
 # Display the table Judges
 def display(request):
     query_results = Judge.objects.all()
+    return query_results
 
 
 ########## TASK 1 VIEW - COMPARISON ##################
@@ -59,9 +60,12 @@ def play_comp(request):
             # saving all the data in the current object into the database
             survey_obj.save()
             if n_comparisons == request.session['comp_trial_count']:
-                # for sesskey in request.session.keys():
-                #     del request.session[sesskey]
-                return HttpResponseRedirect('/instructionsTR/')
+                if request.session['post_exp']:
+                    for sesskey in request.session.keys():
+                        del request.session[sesskey]
+                    return HttpResponseRedirect('/goodbye/')
+                else:
+                    return HttpResponseRedirect('/instructionsTR/')
             else:
                 return HttpResponseRedirect('/play_comp/')
         # if a GET (or any other method) we'll create a blank form
@@ -96,7 +100,6 @@ def ajaxplay_comp(request):
 
 
 ########## TASK 2 VIEW - EVALUATION ##################
-
 
 
 def evaluation(request):
@@ -145,7 +148,8 @@ def was_emotion(request):
         if form.is_valid():
             attention = form.cleaned_data['attention']
             was_emotion = form.cleaned_data['likert_was_emotion']
-            cat_emotion = form.cleaned_data['cat_emotion']
+            pri_emo = form.cleaned_data['pri_emo']
+            # sec_emo = form.cleaned_data['sec_emo']
             subject = request.session['subject']
             valence = request.session['valence']
             arousal = request.session['arousal']
@@ -155,14 +159,19 @@ def was_emotion(request):
             trial = request.session['trial_count']
             reaction_time = request.session['reaction_time']
             # creating a judge object containing all the data
-            judge_obj = Judge(attention=attention, was_emotion=was_emotion, cat_emotion=cat_emotion, trial=trial, valence=valence, arousal=arousal, dominance=dominance, subject=subject,
+            judge_obj = Judge(attention=attention, was_emotion=was_emotion, pri_emo=pri_emo, trial=trial, valence=valence, arousal=arousal, dominance=dominance, subject=subject,
                               idAnim=idAnim, nameAnim=nameAnim, reaction_time=reaction_time)
             # saving all the data in the current object into the database
             judge_obj.save()
             if nItems == request.session['trial_count']:
-                for sesskey in request.session.keys():
-                    del request.session[sesskey]
-                return HttpResponseRedirect('/goodbye/')
+                # for sesskey in request.session.keys():
+                #     del request.session[sesskey]
+                # Post exp play comp
+                request.session['post_exp'] = True
+                request.session['comp_trial_count'] = 0
+                request.session['comp_trials_list'] = np.random.permutation([30, 31]).tolist()
+                return HttpResponseRedirect('/play_comp/')
+                # return HttpResponseRedirect('/goodbye/')
             else:
                 return HttpResponseRedirect('/evaluation/')
     else:
@@ -173,9 +182,9 @@ def was_emotion(request):
     subject = request.session['subject']
     # Store the index for the next animation display
     if nItems < request.session['trial_count']:
-        return HttpResponseRedirect('/goodbye/')
+        return HttpResponseRedirect('/play_comp/')
 
-    return render(request, 'wasEmotion.html', {'form': form})  # initial template for homepage, 'flag':1, 'state':1
+    return render(request, 'wasEmotion.html', {'form': form, 'flag': 1, 'state': 1})  # initial template for homepage, 'flag':1, 'state':1
 
 
 def ajaxplay(request):
@@ -183,6 +192,7 @@ def ajaxplay(request):
     while True:
         # Run the animation and get the name of it
         nameAnim = play_df_cond_gaussian_sampling.main(motion_ses, leds_ses, request.session['current_anim'])
+        print("Name anim: ", nameAnim)
         time_stopAnim = time.time()
         break
 
@@ -215,10 +225,11 @@ def get_participant(request):
                 request.session['age'] = age
                 request.session['sex'] = sex
                 request.session['trials_list'] = np.random.permutation(range(1, nItems + 1)).tolist()
-                request.session['comp_trials_list'] = np.random.permutation([28, 29, 30, 31]).tolist()
+                request.session['comp_trials_list'] = np.random.permutation([28, 29]).tolist()
+                request.session['post_exp'] = False
+                request.session['time_stopAnim'] = 0
                 # Save demographic data in the database
                 demographic_obj = Demographic(subject=subject, age=age, sex=sex, anim_experience=anim_experience)
-                # saving all the data in the current object into the database
                 demographic_obj.save()
                 return HttpResponseRedirect('/play_comp/')
             except IntegrityError as e:
@@ -269,16 +280,6 @@ class GoodbyePageView(TemplateView):
     template_name = "goodbye.html"
 
 
-class EmotionAutocomplete(autocomplete.Select2QuerySetView):
-    def get_queryset(self):
-
-        qs = Judge.objects.all()
-
-        if self.q:
-            qs = qs.filter(name__istartswith=self.q)
-
-        return qs
-
 
 #### TRAINING SESSION VIEWS ###########
 def tr_evaluation(request):
@@ -313,7 +314,7 @@ def tr_was_emotion(request):
                 return HttpResponseRedirect('/evaluationTR/')
     else:
         form = WasEmotionForm()
-    return render(request, 'wasEmotion.html', {'form': form})
+    return render(request, 'wasEmotion.html', {'form': form, 'flag': 1, 'state': 0})
 
 
 def tr_ajaxplay(request):
