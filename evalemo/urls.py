@@ -2,6 +2,7 @@
 from django.conf.urls import url
 from evalemo import views
 
+
 app_name = 'evalemo'
 
 urlpatterns = [
@@ -10,7 +11,6 @@ urlpatterns = [
 
     url(r'^goodbye/$', views.GoodbyePageView.as_view()),
 
-    url(r'^emotion-autocomplete/$', views.EmotionAutocomplete.as_view(), name='emotion-autocomplete',),
 
 
     # Task 2
