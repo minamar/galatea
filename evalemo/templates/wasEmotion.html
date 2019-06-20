@@ -35,7 +35,7 @@ form .likert {
   list-style:none;
   width:100%;
   margin:0;
-  padding:0 0 80px;
+  padding:0 0 40px;
   display:block;
   border-bottom:2px solid #efefef;
 }
@@ -98,11 +98,31 @@ position: fixed
 	outline:none;
 }
 
+form .label-select {
+font-size: 20px}
+
+
+input[type=submit] {
+    padding:5px 15px;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 150%;
+    border-style: solid;
+    font-color:#3A3738;
+}
+
 form .buttons .clear {background-color: #e9e9e9;}
 form .buttons .submit {background-color: #67ab49;} 
 form .buttons .clear:hover {background-color: #ccc;}
 form .buttons .submit:hover {background-color: #14892c;} 
 
+select {font-size:20px}
     </style>
 
 </head>
@@ -112,7 +132,7 @@ form .buttons .submit:hover {background-color: #14892c;}
 {% load static %}
 <div class="wrap">
 
-    <form action="" method="post">
+    <form action=" " method="post">
         {% csrf_token %}
         <!--        </br>-->
         <!--        </br>-->
@@ -147,14 +167,23 @@ form .buttons .submit:hover {background-color: #14892c;}
             {% endfor %}
         </ul>
 
-        {% else %}
+        {% elif field.name == "pri_emo" %}
 
         </br>
-        <h1 class="likert-header">If you think it was emotional, what was the emotion(s) expressed?</h1>
-        <p class="likert-header"><i>(You can use your own words, or chose from the printed list)</i></p>
+        <h1 class="statement">Please select an emotion that best describes how the robot appears to feel.</h1>
         </br>
         </br>
-        <ul class='text'>
+        <ul class='label-select'>
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+
+        </ul>
+        {% else %}
+        </br>
+        <h1 class="statement">If you find the above description too general, please add a secondary emotion description.</h1>
+        </br>
+        </br>
+        <ul class='label-select'>
             {{ field.errors }}
             {{ field.label_tag }} {{ field }}
 
@@ -163,7 +192,8 @@ form .buttons .submit:hover {background-color: #14892c;}
         {% endfor %}
         </br></br>
         <div class="buttons">
-            <button class="submit">Submit</button>
+<!--            <button class="submit">Submit</button>-->
+            <input id="submit_button" class="submit" type='submit' value='Submit'/>
         </div>
 
     </form>
