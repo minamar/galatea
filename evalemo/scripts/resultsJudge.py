@@ -1,9 +1,12 @@
-# If you want run it from the shell
+# To download the database
 #python manage.py shell
 
 from evalemo.models import Judge
 import pandas as pd
 from collections import OrderedDict
+
+# Change the destination and csv name in your computer
+dest = '/home/mina/Dropbox/APRIL-MINA/django/galatea_vae/Data/ratings_grpilot.csv'
 
 ratings = []
 
@@ -11,37 +14,15 @@ ratings = []
 for judgei in Judge.objects.values():
 	ratings.append(judgei)
 
-# ratings look like that:
-# [{'arousal': 0.5,
-#  'endAnimTime': 1.0440828800201416,
-#  'group': 1,
-#  u'id': 19,
-#  'idAnim': 42,
-#  'nameAnim': u'Amused_1',
-#  'numPlay': 1,
-#  'order': u'A',
-#  'startAnimTime': 7.640270948410034,
-#  'subject': 1,
-#  'trial': 1,
-#  'valence': 0.5}]
-
-
 # Save judge entries (python dictionary) to pandas dataframe
 df = pd.DataFrame(ratings)
 
-# Save pandas df to pickle
-df.to_pickle('/home/mina/Dropbox/APRIL-MINA/django/galatea/Data/ratingsP20.pkl')
-
-# Read from pickle
-P16= pd.read_pickle('/home/mina/Dropbox/APRIL-MINA/django/galatea/Data/ratingsP20.pkl')
-
 # Save in csv
-P16.to_csv('/home/mina/Dropbox/APRIL-MINA/django/galatea/Data/ratingsP20.csv', sep='\t', encoding='utf-8')
+df.to_csv(dest, sep='\t', encoding='utf-8')
 
 
 
-# nOW FOR THE DEMOGRAPHICS
-from evalemo.models import Demographic
+# For Demografics
 import pandas as pd
 from collections import OrderedDict
 
