@@ -11,13 +11,13 @@ class ParticipantForm(forms.Form):
 
 
 class SliderForm(forms.Form):
-    pleasure = forms.FloatField(label='Displeasure-Pleasure', widget=forms.NumberInput(
+    pleasure = forms.FloatField(label='Displeased - Pleased', widget=forms.NumberInput(
         attrs={'type': 'range', 'name': 'AS_pleasure', 'id': 'AS-arousal', 'min': '0', 'max': '1',
                'step': '0.01'}))
-    arousal = forms.FloatField(label='Disactivated-Activated', widget=forms.NumberInput(
+    arousal = forms.FloatField(label='Inactive - Active', widget=forms.NumberInput(
         attrs={'type': 'range', 'name': 'AS_arousal', 'id': 'AS-arousal', 'min': '0', 'max': '1',
                'step': '0.01'}))
-    dominance = forms.FloatField(label='Submissive-Dominant', widget=forms.NumberInput(
+    dominance = forms.FloatField(label='Submissive - Dominant', widget=forms.NumberInput(
         attrs={'type': 'range', 'name': 'AS_arousal', 'id': 'AS-arousal', 'min': '0', 'max': '1',
                'step': '0.01'}))
 
