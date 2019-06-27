@@ -82,19 +82,17 @@ def play_comp(request):
     request.session['current_anim'] = request.session['comp_trials_list'][comp_trial_count - 1]  # anim_order[trial_count-1]
     print("\n=============================	Current anim: " + str(request.session['current_anim']) + "\n")
     print("\n=============================	Comp_trials_list: " + str(request.session['comp_trials_list']) + "\n")
-    return render(request, 'play_comp.html',
-                  {'form': form, 'flag': 1, 'state': 1})  # (state == 1) ? "/ajaxplay" : "/ajaxplayTR"
+    return render(request, 'play_comp.html', {'form': form, 'flag': 1})
 
 
 def ajaxplay_comp(request):
 
     while True:
         # Run the animation and get the name of it
-        nameAnim = play_df_cond_gaussian_sampling.main(motion_ses, leds_ses, request.session['current_anim'])
+        name_anim = play_df_cond_gaussian_sampling.main(motion_ses, leds_ses, request.session['current_anim'])
+        print('Comp anim: ', name_anim)
         break
 
-    # Replay button is clicked
-    request.session['comp_replay_count'] += 1
 
     return HttpResponse()
 
@@ -191,8 +189,8 @@ def ajaxplay(request):
 
     while True:
         # Run the animation and get the name of it
-        nameAnim = play_df_cond_gaussian_sampling.main(motion_ses, leds_ses, request.session['current_anim'])
-        print("Name anim: ", nameAnim)
+        name_anim = play_df_cond_gaussian_sampling.main(motion_ses, leds_ses, request.session['current_anim'])
+        print("Main session anim: ", name_anim)
         time_stopAnim = time.time()
         break
 
@@ -201,7 +199,7 @@ def ajaxplay(request):
     # numPlay = request.session['replay_count']
     # # Only the first time animation is played, save the stop time
     if request.session['replay_count'] == 1:
-        request.session['nameAnim'] = nameAnim
+        request.session['nameAnim'] = name_anim
         request.session['time_stopAnim'] = time_stopAnim
 
     return HttpResponse()
@@ -320,9 +318,10 @@ def tr_was_emotion(request):
 def tr_ajaxplay(request):
     while True:
         if motion_ses is not None:
-            play_df_cond_gaussian_sampling.main(motion_ses, leds_ses, request.session['current_anim_tr'])
+            name_anim = play_df_cond_gaussian_sampling.main(motion_ses, leds_ses, request.session['current_anim_tr'])
+            print('Train anim: ', name_anim)
             break
         else:
-            print("Motion ses is none")
+            print("Error: Naoqi motion sesssion is none")
 
     return HttpResponse()

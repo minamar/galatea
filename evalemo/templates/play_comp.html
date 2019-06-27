@@ -191,8 +191,7 @@ form .buttons .submit:hover {background-color: #14892c;}
 		    	$("#submit_button").hide();
 
 		        $.ajax({
-		        	url: (state == 1) ? "/ajaxplay" : "/ajaxplayTR",
-
+		        	url: "/ajaxplay_comp",
 
                     success: function(response) {
                                             $("#play_button").show();
