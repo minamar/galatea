@@ -62,7 +62,10 @@ SEC_EMO_CHOICES = [
 ]
 
 
+# TODO: Keep the following 2 classes that contain initial='1' for the debbugging. For a real experiment comment them out and uncomment the Experiment Copy
+# Debugging Copy with initial values
 class WasEmotionForm(forms.Form):
+
     attention = forms.ChoiceField(label="The robot's behavior draws my attention.", initial='1', widget=forms.RadioSelect, choices=(
         ('1', 'Strongly disagree'), ('2', 'Disagree'), ('3', 'Neither agree nor disagree'), ('4', 'Agree'),
         ('5', 'Strongly agree')))
@@ -70,11 +73,9 @@ class WasEmotionForm(forms.Form):
         ('1', 'Strongly disagree'), ('2', 'Disagree'), ('3', 'Neither agree nor disagree'), ('4', 'Agree'),
         ('5', 'Strongly agree')))
     pri_emo = forms.CharField(label='Primary emotion', widget=forms.Select(choices=PRI_EMO_CHOICES), initial=' ')
-    # sec_emo = forms.CharField(label='Secondary emotion',  required=False, widget=forms.Select(choices=SEC_EMO_CHOICES), initial=' ')
 
 
-
-# Copy with initial values for debugging
+# Debugging Copy with initial values
 class SurveyForm(forms.Form):
 
     anth_1 = forms.ChoiceField(label="anthropomorphism", initial='1', widget=forms.RadioSelect, choices=(
@@ -99,4 +100,44 @@ class SurveyForm(forms.Form):
         ('1', 'Inert'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Interactive')))
     animacy_6 = forms.ChoiceField(label=" ", initial='1', widget=forms.RadioSelect, choices=(
         ('1', 'Apathetic'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Responsive')))
+
+
+# TODO: Uncomment for the real experiment, and comment out for debugging
+# # Experiment Copy without initial values
+# class WasEmotionForm(forms.Form):
+#
+#     attention = forms.ChoiceField(label="The robot's behavior draws my attention.", widget=forms.RadioSelect, choices=(
+#         ('1', 'Strongly disagree'), ('2', 'Disagree'), ('3', 'Neither agree nor disagree'), ('4', 'Agree'),
+#         ('5', 'Strongly agree')))
+#     likert_was_emotion = forms.ChoiceField(label="The robot's expression was emotional.", widget=forms.RadioSelect, choices=(
+#         ('1', 'Strongly disagree'), ('2', 'Disagree'), ('3', 'Neither agree nor disagree'), ('4', 'Agree'),
+#         ('5', 'Strongly agree')))
+#     pri_emo = forms.CharField(label='Primary emotion', widget=forms.Select(choices=PRI_EMO_CHOICES), initial=' ')
+#
+#
+# # Experiment Copy without initial values
+# class SurveyForm(forms.Form):
+#
+#     anth_1 = forms.ChoiceField(label="anthropomorphism", widget=forms.RadioSelect, choices=(
+#         ('1', 'Fake'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Natural')))
+#     anth_2 = forms.ChoiceField(label=" ", widget=forms.RadioSelect, choices=(
+#         ('1', 'Machinelike'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Humanlike')))
+#     anth_3 = forms.ChoiceField(label=" ", widget=forms.RadioSelect, choices=(
+#         ('1', 'Unconscious'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Conscious')))
+#     anth_4 = forms.ChoiceField(label=" ", widget=forms.RadioSelect, choices=(
+#         ('1', 'Artificial'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Lifelike')))
+#     anth_5 = forms.ChoiceField(label=" ", widget=forms.RadioSelect, choices=(
+#         ('1', 'Moving rigidly'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Moving elegantly')))
+#     animacy_1 = forms.ChoiceField(label="animacy", widget=forms.RadioSelect, choices=(
+#         ('1', 'Dead'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Alive')))
+#     animacy_2 = forms.ChoiceField(label=" ", widget=forms.RadioSelect, choices=(
+#         ('1', 'Stagnant'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Lively')))
+#     animacy_3 = forms.ChoiceField(label=" ", widget=forms.RadioSelect, choices=(
+#         ('1', 'Mechanical'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Organic')))
+#     animacy_4 = forms.ChoiceField(label=" ", widget=forms.RadioSelect, choices=(
+#         ('1', 'Artificial'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Lifelike')))
+#     animacy_5 = forms.ChoiceField(label=" ", widget=forms.RadioSelect, choices=(
+#         ('1', 'Inert'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Interactive')))
+#     animacy_6 = forms.ChoiceField(label=" ", widget=forms.RadioSelect, choices=(
+#         ('1', 'Apathetic'), ('2', ''), ('3', ''), ('4', ''), ('5', 'Responsive')))
 
