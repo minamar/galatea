@@ -13,7 +13,7 @@ urlpatterns = [
 
 
 
-    # Task 2
+    # Task B
     url(r'^evaluation/$', views.evaluation, name='evaluation'),
 
     url(r'^ajaxplay/$', views.ajaxplay, name='ajaxplay'),
@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^wasEmotion/$', views.was_emotion, name='was_emotion'),
 
 
-    # Task 1
+    # Task A
     url(r'^play_comp/$', views.play_comp, name='play_comp'),
 
     url(r'^ajaxplay_comp/$', views.ajaxplay_comp, name='ajaxplay_comp'),
