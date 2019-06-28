@@ -61,6 +61,7 @@ SEC_EMO_CHOICES = [
     ('Nervousness', 'Nervousness'),
 ]
 
+from django.db.models.fields import BLANK_CHOICE_DASH
 
 # TODO: Keep the following 2 classes that contain initial='1' for the debbugging. For a real experiment comment them out and uncomment the Experiment Copy
 # Debugging Copy with initial values
@@ -72,7 +73,7 @@ class WasEmotionForm(forms.Form):
     likert_was_emotion = forms.ChoiceField(label="The robot's expression was emotional.", initial='1', widget=forms.RadioSelect, choices=(
         ('1', 'Strongly disagree'), ('2', 'Disagree'), ('3', 'Neither agree nor disagree'), ('4', 'Agree'),
         ('5', 'Strongly agree')))
-    pri_emo = forms.CharField(label='Primary emotion', widget=forms.Select(choices=PRI_EMO_CHOICES), initial=' ')
+    pri_emo = forms.CharField(label='', widget=forms.Select(choices=BLANK_CHOICE_DASH + PRI_EMO_CHOICES))
 
 
 # Debugging Copy with initial values
@@ -112,7 +113,7 @@ class SurveyForm(forms.Form):
 #     likert_was_emotion = forms.ChoiceField(label="The robot's expression was emotional.", widget=forms.RadioSelect, choices=(
 #         ('1', 'Strongly disagree'), ('2', 'Disagree'), ('3', 'Neither agree nor disagree'), ('4', 'Agree'),
 #         ('5', 'Strongly agree')))
-#     pri_emo = forms.CharField(label='Primary emotion', widget=forms.Select(choices=PRI_EMO_CHOICES), initial=' ')
+#     pri_emo = forms.CharField(label='', widget=forms.Select(choices=BLANK_CHOICE_DASH + PRI_EMO_CHOICES))
 #
 #
 # # Experiment Copy without initial values
