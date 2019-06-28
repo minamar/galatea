@@ -1,19 +1,5 @@
 import numpy as np
 
-ROOT_PATH = '/home/mina/Dropbox/APRIL-MINA/ebl-gen-vae/'
-DATA_Y_PATH = 'data/processed/labels/'
-DATA_X_PATH = 'data/processed/sampling/'
-DATA_Z_PATH = 'data/generated/latent_z'
-
-DATA_SAMP = 'data/generated/sampled'
-DATA_RECO = 'data/generated/reconstruction'
-DATA_VISU =  'data/visualizations'
-
-ANIM_DIR = 'data/external/plymouth-animations_3'
-RAW_DATA = 'data/raw'
-SCALERS_PATH = 'data/interim/scalers'
-
-
 # A list with the 8 categories (no Pos/Tir category):
 all_categories = ['Pos/Exc', 'Neu/Cal', 'Neu/Tir', 'Neu/Exc', 'Neg/Cal', 'Neg/Tir', 'Neg/Exc', 'Pos/Cal']
 
