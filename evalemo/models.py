@@ -17,21 +17,21 @@ class Judge(models.Model):
     dominance = models.FloatField()
     attention = models.IntegerField()
     was_emotion = models.IntegerField()
-    pri_emo = models.CharField(max_length=300)
+    # pri_emo = models.CharField(max_length=300)
     # sec_emo = models.CharField(max_length=300)
     reaction_time = models.FloatField()
 
     def __str__(self):
-        return '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t' % (
+        return '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t' % (
             self.trial, self.subject, self.idAnim, self.nameAnim, self.valence, self.arousal, self.dominance,
-            self.attention, self.was_emotion, self.pri_emo, self.reaction_time)
+            self.attention, self.was_emotion, self.reaction_time)
 
 
 class JudgeForm(ModelForm):
     class Meta:
         model = Judge
         fields = ['trial', 'subject', 'idAnim', 'nameAnim', 'valence', 'arousal', 'dominance', 'attention', 'was_emotion',
-                  'pri_emo', 'reaction_time']
+                  'reaction_time']
 
 
 @python_2_unicode_compatible

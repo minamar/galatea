@@ -73,7 +73,7 @@ class WasEmotionForm(forms.Form):
     likert_was_emotion = forms.ChoiceField(label="The robot's expression was emotional.", initial='1', widget=forms.RadioSelect, choices=(
         ('1', 'Strongly disagree'), ('2', 'Disagree'), ('3', 'Neither agree nor disagree'), ('4', 'Agree'),
         ('5', 'Strongly agree')))
-    pri_emo = forms.CharField(label='', widget=forms.Select(choices=BLANK_CHOICE_DASH + PRI_EMO_CHOICES))
+    # pri_emo = forms.CharField(label='', widget=forms.Select(choices=BLANK_CHOICE_DASH + PRI_EMO_CHOICES))
 
 
 # Debugging Copy with initial values

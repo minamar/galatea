@@ -146,7 +146,7 @@ def was_emotion(request):
         if form.is_valid():
             attention = form.cleaned_data['attention']
             was_emotion = form.cleaned_data['likert_was_emotion']
-            pri_emo = form.cleaned_data['pri_emo']
+            # pri_emo = form.cleaned_data['pri_emo']
             # sec_emo = form.cleaned_data['sec_emo']
             subject = request.session['subject']
             valence = request.session['valence']
@@ -157,7 +157,7 @@ def was_emotion(request):
             trial = request.session['trial_count']
             reaction_time = request.session['reaction_time']
             # creating a judge object containing all the data
-            judge_obj = Judge(attention=attention, was_emotion=was_emotion, pri_emo=pri_emo, trial=trial, valence=valence, arousal=arousal, dominance=dominance, subject=subject,
+            judge_obj = Judge(attention=attention, was_emotion=was_emotion, trial=trial, valence=valence, arousal=arousal, dominance=dominance, subject=subject,
                               idAnim=idAnim, nameAnim=nameAnim, reaction_time=reaction_time)
             # saving all the data in the current object into the database
             judge_obj.save()
